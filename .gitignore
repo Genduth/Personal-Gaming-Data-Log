@@ -11,5 +11,5 @@ dist/
 build/
 .mypy_cache/
 *.log
-powerbi/.pbi/localSettings.json
-powerbi/.pbi/cache.abf
+**/powerbi/.pbi/localSettings.json
+**/powerbi/.pbi/cache.abf
