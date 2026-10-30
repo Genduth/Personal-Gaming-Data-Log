@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "f242c923a5bc40ddb940",
+  "position": { "x": 340, "y": 24, "z": 1, "height": 128, "width": 300, "tabOrder": 1 },
+  "visual": {
+    "visualType": "card",
+    "query": { "queryState": { "Values": { "projections": [{
+      "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "Games Played" } },
+      "queryRef": "Sessions.Games Played", "nativeQueryRef": "Games Played"
+    }] } } },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'GAMES PLAYED'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "a8bc876fb9cf4f4c8a93",
+  "position": { "x": 24, "y": 172, "z": 2, "height": 680, "width": 1392, "tabOrder": 2 },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": { "projections": [{
+          "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Activity Heatmap" } }, "Property": "weekday_name" } },
+          "queryRef": "Activity Heatmap.weekday_name", "nativeQueryRef": "Day"
+        }] },
+        "Columns": { "projections": [{
+          "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Activity Heatmap" } }, "Property": "start_hour" } },
+          "queryRef": "Activity Heatmap.start_hour", "nativeQueryRef": "Hour"
+        }] },
+        "Values": { "projections": [{
+          "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Activity Heatmap" } }, "Property": "Heatmap Hours" } },
+          "queryRef": "Activity Heatmap.Heatmap Hours", "nativeQueryRef": "Hours"
+        }] }
+      }
+    },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'When I play'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

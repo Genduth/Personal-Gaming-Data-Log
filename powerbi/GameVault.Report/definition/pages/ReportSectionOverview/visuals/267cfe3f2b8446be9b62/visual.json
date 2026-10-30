@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "267cfe3f2b8446be9b62",
+  "position": { "x": 24, "y": 520, "z": 7, "height": 356, "width": 1392, "tabOrder": 7 },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": { "projections": [
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Games" } }, "Property": "title" } }, "queryRef": "Games.title", "nativeQueryRef": "Game" },
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "device_name" } }, "queryRef": "Sessions.device_name", "nativeQueryRef": "Device" },
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "started_at" } }, "queryRef": "Sessions.started_at", "nativeQueryRef": "Started" },
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "status" } }, "queryRef": "Sessions.status", "nativeQueryRef": "Status" },
+          { "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "Average Session (Minutes)" } }, "queryRef": "Sessions.Average Session (Minutes)", "nativeQueryRef": "Minutes" }
+        ] }
+      },
+      "sortDefinition": { "sort": [{ "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "started_at" } }, "direction": "Descending" }] }
+    },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'Recent sessions'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

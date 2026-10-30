@@ -1,0 +1,78 @@
+table Achievements
+	lineageTag: fcd681fe-529c-4f82-abaa-65a65dc9c46f
+
+	column achievement_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: achievement_id
+
+	column game_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: game_id
+
+	column provider
+		dataType: string
+		summarizeBy: none
+		sourceColumn: provider
+
+	column external_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: external_id
+
+	column name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: name
+
+	column description
+		dataType: string
+		summarizeBy: none
+		sourceColumn: description
+
+	column icon_url
+		dataType: string
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: icon_url
+
+	column is_unlocked
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_unlocked
+
+	column unlocked_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: unlocked_at
+
+	column unlocked_date
+		dataType: dateTime
+		formatString: Short Date
+		summarizeBy: none
+		sourceColumn: unlocked_date
+
+	column is_hidden
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_hidden
+
+	column rarity_percent
+		dataType: decimal
+		formatString: 0.0
+		summarizeBy: average
+		sourceColumn: rarity_percent
+
+	partition Achievements = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database(DatabaseHost, DatabaseName),
+				    Data = Source{[Schema="powerbi", Item="achievements"]}[Data]
+				in
+				    Data
+
+	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_ResultType = Table

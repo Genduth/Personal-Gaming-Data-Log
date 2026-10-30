@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "329e43b250e74268a6d9",
+  "position": { "x": 902, "y": 24, "z": 3, "height": 128, "width": 250, "tabOrder": 3 },
+  "visual": {
+    "visualType": "card",
+    "query": { "queryState": { "Values": { "projections": [{
+      "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Games" } }, "Property": "Lifetime Playtime (Hours)" } },
+      "queryRef": "Games.Lifetime Playtime (Hours)", "nativeQueryRef": "Lifetime Playtime (Hours)"
+    }] } } },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'LIFETIME HOURS'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

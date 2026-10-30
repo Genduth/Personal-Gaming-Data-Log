@@ -1,0 +1,59 @@
+table 'Playtime Snapshots'
+	lineageTag: 0f1380e8-3dfd-4493-b351-4fda01dc0b15
+
+	column game_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: game_id
+
+	column account_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: account_id
+
+	column captured_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: captured_at
+
+	column captured_date
+		dataType: dateTime
+		formatString: Short Date
+		summarizeBy: none
+		sourceColumn: captured_date
+
+	column lifetime_playtime_minutes
+		dataType: int64
+		formatString: 0
+		summarizeBy: max
+		sourceColumn: lifetime_playtime_minutes
+
+	column recent_playtime_minutes
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: recent_playtime_minutes
+
+	column provider
+		dataType: string
+		summarizeBy: none
+		sourceColumn: provider
+
+	column minutes_since_previous_snapshot
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: minutes_since_previous_snapshot
+
+	partition 'Playtime Snapshots' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database(DatabaseHost, DatabaseName),
+				    Data = Source{[Schema="powerbi", Item="playtime_snapshots"]}[Data]
+				in
+				    Data
+
+	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_ResultType = Table

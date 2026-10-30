@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/2.0.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU10",
+      "reportVersionAtImport": "5.67",
+      "type": 2
+    },
+    "customTheme": {
+      "name": "GameVault",
+      "reportVersionAtImport": "5.67",
+      "type": 3
+    }
+  },
+  "layoutOptimization": 0
+}

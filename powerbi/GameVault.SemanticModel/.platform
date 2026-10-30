@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "GameVault",
+    "description": "DirectQuery semantic model for personal gaming activity, achievements and live presence."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7ed798f2-1cbc-4e61-ae9d-60031b16a14a"
+  }
+}

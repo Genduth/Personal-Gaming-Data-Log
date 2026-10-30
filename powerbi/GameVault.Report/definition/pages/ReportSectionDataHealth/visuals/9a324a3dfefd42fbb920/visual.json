@@ -1,0 +1,22 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "9a324a3dfefd42fbb920",
+  "position": { "x": 700, "y": 172, "z": 3, "height": 680, "width": 716, "tabOrder": 3 },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": { "Values": { "projections": [
+        { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sync Status" } }, "Property": "provider" } }, "queryRef": "Sync Status.provider", "nativeQueryRef": "Provider" },
+        { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sync Status" } }, "Property": "status" } }, "queryRef": "Sync Status.status", "nativeQueryRef": "Status" },
+        { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sync Status" } }, "Property": "started_at" } }, "queryRef": "Sync Status.started_at", "nativeQueryRef": "Started" },
+        { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sync Status" } }, "Property": "records_processed" } }, "queryRef": "Sync Status.records_processed", "nativeQueryRef": "Records" },
+        { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sync Status" } }, "Property": "warning_count" } }, "queryRef": "Sync Status.warning_count", "nativeQueryRef": "Warnings" },
+        { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sync Status" } }, "Property": "error_message" } }, "queryRef": "Sync Status.error_message", "nativeQueryRef": "Error" }
+      ] } },
+      "sortDefinition": { "sort": [{ "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Sync Status" } }, "Property": "started_at" } }, "direction": "Descending" }] }
+    },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'Sync history'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

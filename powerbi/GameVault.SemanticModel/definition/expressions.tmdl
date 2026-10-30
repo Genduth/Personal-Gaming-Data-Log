@@ -1,0 +1,5 @@
+expression DatabaseHost = "localhost:5432" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 84aa6f82-3857-4e24-bc04-b01114b61a37
+
+expression DatabaseName = "gamevault" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 10f17f6e-8e9b-4f37-b4fe-fc6018893e6b

@@ -1,0 +1,70 @@
+table Games
+	lineageTag: 8c52f928-61d4-4b10-a098-53b79a6c9a23
+
+	measure 'Lifetime Playtime (Hours)' = DIVIDE(SUM(Games[lifetime_playtime_minutes]), 60)
+		formatString: 0.0
+		lineageTag: cfb8a71b-53ef-47f2-88ad-b2f789db1198
+
+	measure 'Library Games' = DISTINCTCOUNT(Games[game_id])
+		formatString: 0
+		lineageTag: 6aa89052-16eb-4c7b-95ef-90cfd116dc5d
+
+	column game_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: game_id
+
+	column title
+		dataType: string
+		summarizeBy: none
+		sourceColumn: title
+
+	column slug
+		dataType: string
+		summarizeBy: none
+		sourceColumn: slug
+
+	column platform
+		dataType: string
+		summarizeBy: none
+		sourceColumn: platform
+
+	column provider
+		dataType: string
+		summarizeBy: none
+		sourceColumn: provider
+
+	column external_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: external_id
+
+	column cover_url
+		dataType: string
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: cover_url
+
+	column lifetime_playtime_minutes
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: lifetime_playtime_minutes
+
+	column last_played_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: last_played_at
+
+	partition Games = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database(DatabaseHost, DatabaseName),
+				    Data = Source{[Schema="powerbi", Item="games"]}[Data]
+				in
+				    Data
+
+	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_ResultType = Table

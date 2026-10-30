@@ -1,0 +1,117 @@
+table Sessions
+	lineageTag: 92f848ad-c217-430a-a1b8-3d176dcf7b97
+
+	measure 'Tracked Hours' = DIVIDE(SUM(Sessions[duration_seconds]), 3600)
+		formatString: 0.0
+		lineageTag: d455fa38-8bc3-4a62-b4ab-c68df38ddf07
+
+	measure 'Session Count' = DISTINCTCOUNT(Sessions[session_id])
+		formatString: 0
+		lineageTag: e246ff70-aef0-464a-921c-05ce0391ac5c
+
+	measure 'Games Played' = DISTINCTCOUNT(Sessions[game_id])
+		formatString: 0
+		lineageTag: 9dfaa0a7-b840-45af-a4df-02b19bc60ed4
+
+	measure 'Average Session (Minutes)' = DIVIDE(SUM(Sessions[duration_seconds]), [Session Count] * 60)
+		formatString: 0
+		lineageTag: 6b132546-b84a-4875-929c-e61cf978cb89
+
+	measure 'Live Sessions' = CALCULATE(DISTINCTCOUNT(Sessions[session_id]), Sessions[is_live] = TRUE())
+		formatString: 0
+		lineageTag: 2072d2be-752d-4a9d-b45f-a3844bc02b89
+
+	column session_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: session_id
+
+	column game_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: game_id
+
+	column device_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: device_id
+
+	column device_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: device_name
+
+	column source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: source
+
+	column executable
+		dataType: string
+		summarizeBy: none
+		sourceColumn: executable
+
+	column started_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: started_at
+
+	column session_date
+		dataType: dateTime
+		formatString: Short Date
+		summarizeBy: none
+		sourceColumn: session_date
+
+	column start_hour
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: start_hour
+
+	column weekday_number
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: weekday_number
+
+	column ended_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: ended_at
+
+	column duration_seconds
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: duration_seconds
+
+	column status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: status
+
+	column last_heartbeat_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: last_heartbeat_at
+
+	column is_live
+		dataType: boolean
+		formatString: "\"TRUE\";\"TRUE\";\"FALSE\""
+		summarizeBy: none
+		sourceColumn: is_live
+
+	partition Sessions = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database(DatabaseHost, DatabaseName),
+				    Data = Source{[Schema="powerbi", Item="sessions"]}[Data]
+				in
+				    Data
+
+	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_ResultType = Table

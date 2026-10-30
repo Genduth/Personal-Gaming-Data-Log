@@ -1,0 +1,24 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "cfc85fc295a5415b8c5f",
+  "position": { "x": 914, "y": 172, "z": 6, "height": 330, "width": 502, "tabOrder": 6 },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": { "projections": [{
+          "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Games" } }, "Property": "title" } },
+          "queryRef": "Games.title", "nativeQueryRef": "Game"
+        }] },
+        "Y": { "projections": [{
+          "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "Tracked Hours" } },
+          "queryRef": "Sessions.Tracked Hours", "nativeQueryRef": "Tracked Hours"
+        }] }
+      },
+      "sortDefinition": { "sort": [{ "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "Tracked Hours" } }, "direction": "Descending" }] }
+    },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'Most played'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

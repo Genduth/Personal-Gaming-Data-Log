@@ -1,0 +1,64 @@
+table Measures
+	lineageTag: 0b0e3491-cd02-4680-850a-c0d59da4d0ba
+
+	measure 'Tracked Hours (7D)' = CALCULATE([Tracked Hours], DATESINPERIOD(Date[date], MAX(Date[date]), -7, DAY))
+		formatString: 0.0
+		lineageTag: 52a63264-7a75-4e93-b365-204d04176629
+
+	measure 'Tracked Hours (Previous 7D)' = CALCULATE([Tracked Hours], DATESINPERIOD(Date[date], MAX(Date[date]) - 7, -7, DAY))
+		formatString: 0.0
+		lineageTag: b6def0ef-b5b0-4f4f-a9c9-cefd45a9aec8
+
+	measure '7D Playtime Change %' = DIVIDE([Tracked Hours (7D)] - [Tracked Hours (Previous 7D)], [Tracked Hours (Previous 7D)])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 990cf715-b4c1-4ec1-a914-5e75b34f1de8
+
+	measure 'Unlocked Achievements' = CALCULATE(COUNTROWS(Achievements), Achievements[is_unlocked] = TRUE())
+		formatString: 0
+		lineageTag: 21066677-9aed-4b01-ab0d-530336d7762e
+
+	measure 'Total Achievements' = COUNTROWS(Achievements)
+		formatString: 0
+		lineageTag: fd43b94e-ae18-4789-af70-0bf3600acf08
+
+	measure 'Achievement Completion %' = DIVIDE([Unlocked Achievements], [Total Achievements])
+		formatString: 0.0%
+		lineageTag: ac241985-090c-4d85-b04d-1022662ca834
+
+	measure 'Rare Unlocks' = CALCULATE(COUNTROWS(Achievements), Achievements[is_unlocked] = TRUE(), Achievements[rarity_percent] <= 10)
+		formatString: 0
+		lineageTag: 3c431f98-4a53-4ba4-b79a-a4a186f40037
+
+	measure 'Current Game' = COALESCE(CONCATENATEX('Live Activity', 'Live Activity'[title], ", "), "Offline")
+		lineageTag: db50e8ed-8b30-477c-ad1d-5fd2d7e0e057
+
+	measure 'Current Session (Minutes)' = DIVIDE(MAX('Live Activity'[live_duration_seconds]), 60)
+		formatString: 0
+		lineageTag: 75ec27da-bb82-4244-8f2e-946b4cbaf983
+
+	measure 'Data Quality Issues' = SUM('Data Quality'[issue_count])
+		formatString: 0
+		lineageTag: 34cc3365-9d9e-4bfc-a739-21995ab7971d
+
+	measure 'Last Successful Sync' = CALCULATE(MAX('Sync Status'[finished_at]), 'Sync Status'[status] = "success")
+		formatString: General Date
+		lineageTag: f7ade03a-e057-4873-a4f6-4e5be3924b9d
+
+	column metric_key
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: metric_key
+
+	partition Measures = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database(DatabaseHost, DatabaseName),
+				    Data = Source{[Schema="powerbi", Item="metrics"]}[Data]
+				in
+				    Data
+
+	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_ResultType = Table

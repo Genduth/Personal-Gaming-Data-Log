@@ -1,0 +1,43 @@
+name: gamevault
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-gamevault}
+      POSTGRES_USER: ${POSTGRES_USER:-gamevault}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-gamevault} -d ${POSTGRES_DB:-gamevault}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    ports:
+      - "5432:5432"
+    volumes:
+      - gamevault_postgres:/var/lib/postgresql/data
+
+  api:
+    image: gamevault-api:local
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-gamevault}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-gamevault}
+      COLLECTOR_TOKEN: ${COLLECTOR_TOKEN:?Set COLLECTOR_TOKEN in .env}
+      STEAM_API_KEY: ${STEAM_API_KEY:-}
+      STEAM_ID: ${STEAM_ID:-}
+      STEAM_ACHIEVEMENT_GAME_LIMIT: ${STEAM_ACHIEVEMENT_GAME_LIMIT:-100}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    ports:
+      - "8000:8000"
+
+volumes:
+  gamevault_postgres:

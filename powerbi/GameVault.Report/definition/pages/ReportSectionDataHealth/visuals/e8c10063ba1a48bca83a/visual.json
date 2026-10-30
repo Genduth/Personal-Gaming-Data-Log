@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "e8c10063ba1a48bca83a",
+  "position": { "x": 24, "y": 172, "z": 2, "height": 300, "width": 660, "tabOrder": 2 },
+  "visual": {
+    "visualType": "tableEx",
+    "query": { "queryState": { "Values": { "projections": [
+      { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Data Quality" } }, "Property": "check_name" } }, "queryRef": "Data Quality.check_name", "nativeQueryRef": "Check" },
+      { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Data Quality" } }, "Property": "issue_count" } }, "queryRef": "Data Quality.issue_count", "nativeQueryRef": "Issues" },
+      { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Data Quality" } }, "Property": "last_observed_at" } }, "queryRef": "Data Quality.last_observed_at", "nativeQueryRef": "Last observed" }
+    ] } } },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'Data quality checks'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

@@ -1,0 +1,15 @@
+.env
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+.mypy_cache/
+*.log
+powerbi/.pbi/localSettings.json
+powerbi/.pbi/cache.abf

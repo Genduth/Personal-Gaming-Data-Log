@@ -1,0 +1,23 @@
+relationship 0c7f3ea9-91e5-45bf-97c8-ded48a731d5c
+	fromColumn: Sessions.game_id
+	toColumn: Games.game_id
+
+relationship 321608e2-c1a0-4935-9b46-3c773cf6cb41
+	fromColumn: Sessions.session_date
+	toColumn: Date.date
+
+relationship 96a94648-73a1-49d7-b112-192cd8430664
+	fromColumn: Achievements.game_id
+	toColumn: Games.game_id
+
+relationship 490a799f-b4fd-4dcf-9e7d-563f4199c85f
+	fromColumn: Achievements.unlocked_date
+	toColumn: Date.date
+
+relationship b61be6cb-e6db-4c6b-aad9-93ba64d3ca58
+	fromColumn: 'Playtime Snapshots'.game_id
+	toColumn: Games.game_id
+
+relationship 24635e42-22a5-42be-b9b1-eef594ca8b86
+	fromColumn: 'Playtime Snapshots'.captured_date
+	toColumn: Date.date

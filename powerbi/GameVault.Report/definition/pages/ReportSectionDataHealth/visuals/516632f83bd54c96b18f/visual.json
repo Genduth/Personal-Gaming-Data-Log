@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "516632f83bd54c96b18f",
+  "position": { "x": 340, "y": 24, "z": 1, "height": 128, "width": 460, "tabOrder": 1 },
+  "visual": {
+    "visualType": "card",
+    "query": { "queryState": { "Values": { "projections": [{
+      "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Measures" } }, "Property": "Last Successful Sync" } },
+      "queryRef": "Measures.Last Successful Sync", "nativeQueryRef": "Last Successful Sync"
+    }] } } },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'LAST SUCCESSFUL SYNC'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

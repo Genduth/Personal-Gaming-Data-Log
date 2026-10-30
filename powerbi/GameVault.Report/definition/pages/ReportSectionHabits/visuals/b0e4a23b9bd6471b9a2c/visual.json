@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "b0e4a23b9bd6471b9a2c",
+  "position": { "x": 24, "y": 24, "z": 0, "height": 128, "width": 300, "tabOrder": 0 },
+  "visual": {
+    "visualType": "card",
+    "query": { "queryState": { "Values": { "projections": [{
+      "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "Average Session (Minutes)" } },
+      "queryRef": "Sessions.Average Session (Minutes)", "nativeQueryRef": "Average Session (Minutes)"
+    }] } } },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'AVERAGE SESSION'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

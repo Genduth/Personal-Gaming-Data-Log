@@ -1,0 +1,68 @@
+table 'Live Activity'
+	lineageTag: 0d869b26-10cb-4321-aa19-93e8a2adf2ae
+
+	column session_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: session_id
+
+	column game_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: game_id
+
+	column title
+		dataType: string
+		summarizeBy: none
+		sourceColumn: title
+
+	column cover_url
+		dataType: string
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: cover_url
+
+	column device_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: device_name
+
+	column executable
+		dataType: string
+		summarizeBy: none
+		sourceColumn: executable
+
+	column started_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: started_at
+
+	column last_heartbeat_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: last_heartbeat_at
+
+	column live_duration_seconds
+		dataType: int64
+		formatString: 0
+		summarizeBy: max
+		sourceColumn: live_duration_seconds
+
+	column presence_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: presence_status
+
+	partition 'Live Activity' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database(DatabaseHost, DatabaseName),
+				    Data = Source{[Schema="powerbi", Item="live_activity"]}[Data]
+				in
+				    Data
+
+	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_ResultType = Table

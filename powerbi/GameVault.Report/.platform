@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "GameVault",
+    "description": "Live personal gaming activity and history dashboard."
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c4a64a53-79da-44e0-9ff4-12da8803548e"
+  }
+}

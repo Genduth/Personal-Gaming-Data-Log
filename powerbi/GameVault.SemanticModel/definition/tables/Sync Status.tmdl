@@ -1,0 +1,64 @@
+table 'Sync Status'
+	lineageTag: 46707ad3-116c-4329-8fa0-05ec30d254a4
+
+	column sync_run_id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sync_run_id
+
+	column provider
+		dataType: string
+		summarizeBy: none
+		sourceColumn: provider
+
+	column status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: status
+
+	column started_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: started_at
+
+	column finished_at
+		dataType: dateTime
+		formatString: General Date
+		summarizeBy: none
+		sourceColumn: finished_at
+
+	column records_processed
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: records_processed
+
+	column warning_count
+		dataType: int64
+		formatString: 0
+		summarizeBy: sum
+		sourceColumn: warning_count
+
+	column error_message
+		dataType: string
+		summarizeBy: none
+		sourceColumn: error_message
+
+	column duration_seconds
+		dataType: int64
+		formatString: 0
+		summarizeBy: average
+		sourceColumn: duration_seconds
+
+	partition 'Sync Status' = m
+		mode: directQuery
+		source =
+				let
+				    Source = PostgreSQL.Database(DatabaseHost, DatabaseName),
+				    Data = Source{[Schema="powerbi", Item="sync_status"]}[Data]
+				in
+				    Data
+
+	annotation PBI_NavigationStepName = Navigation
+	annotation PBI_ResultType = Table

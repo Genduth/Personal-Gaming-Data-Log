@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main, work]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: gamevault_test
+          POSTGRES_USER: gamevault
+          POSTGRES_PASSWORD: gamevault-test-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U gamevault -d gamevault_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg://gamevault:gamevault-test-password@localhost:5432/gamevault_test
+      COLLECTOR_TOKEN: test-collector-token-at-least-16-chars
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e '.[dev]'
+      - run: python -m gamevault.migrate
+      - run: ruff check .
+      - run: pytest --cov --cov-report=term-missing

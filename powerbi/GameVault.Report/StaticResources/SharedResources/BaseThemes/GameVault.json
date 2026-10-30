@@ -1,0 +1,34 @@
+{
+  "name": "GameVault",
+  "dataColors": ["#8B5CF6", "#22D3EE", "#F59E0B", "#F43F5E", "#34D399", "#60A5FA", "#C084FC", "#FB7185"],
+  "background": "#090B13",
+  "foreground": "#F7F7FB",
+  "tableAccent": "#8B5CF6",
+  "good": "#34D399",
+  "neutral": "#60A5FA",
+  "bad": "#F43F5E",
+  "minimum": "#171B2C",
+  "center": "#8B5CF6",
+  "maximum": "#22D3EE",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#111526" } }, "transparency": 4 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#242A42" } }, "radius": 12 }],
+        "title": [{ "show": true, "fontColor": { "solid": { "color": "#F7F7FB" } }, "fontSize": 12, "fontFamily": "Segoe UI Semibold" }],
+        "visualHeader": [{ "show": true, "foreground": { "solid": { "color": "#9CA3AF" } } }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#090B13" } }, "transparency": 0 }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "color": { "solid": { "color": "#F7F7FB" } }, "fontSize": 26, "fontFamily": "Segoe UI Semibold" }],
+        "categoryLabels": [{ "color": { "solid": { "color": "#A5ADBF" } }, "fontSize": 10 }]
+      }
+    }
+  }
+}

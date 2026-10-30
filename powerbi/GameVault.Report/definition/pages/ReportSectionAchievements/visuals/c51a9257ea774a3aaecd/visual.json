@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "c51a9257ea774a3aaecd",
+  "position": { "x": 24, "y": 172, "z": 2, "height": 680, "width": 1392, "tabOrder": 2 },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": { "projections": [
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Games" } }, "Property": "title" } }, "queryRef": "Games.title", "nativeQueryRef": "Game" },
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Achievements" } }, "Property": "name" } }, "queryRef": "Achievements.name", "nativeQueryRef": "Achievement" },
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Achievements" } }, "Property": "description" } }, "queryRef": "Achievements.description", "nativeQueryRef": "Description" },
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Achievements" } }, "Property": "unlocked_at" } }, "queryRef": "Achievements.unlocked_at", "nativeQueryRef": "Unlocked" },
+          { "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Achievements" } }, "Property": "rarity_percent" } }, "queryRef": "Achievements.rarity_percent", "nativeQueryRef": "Global rarity %" }
+        ] }
+      },
+      "sortDefinition": { "sort": [{ "field": { "Column": { "Expression": { "SourceRef": { "Entity": "Achievements" } }, "Property": "unlocked_at" } }, "direction": "Descending" }] }
+    },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'Achievement history'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "cfc11d460a4d48b3bb9f",
+  "position": { "x": 1168, "y": 24, "z": 4, "height": 128, "width": 248, "tabOrder": 4 },
+  "visual": {
+    "visualType": "card",
+    "query": { "queryState": { "Values": { "projections": [{
+      "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "Sessions" } }, "Property": "Session Count" } },
+      "queryRef": "Sessions.Session Count", "nativeQueryRef": "Session Count"
+    }] } } },
+    "visualContainerObjects": { "title": [{ "properties": { "show": { "expr": { "Literal": { "Value": "true" } } }, "text": { "expr": { "Literal": { "Value": "'SESSIONS'" } } } } }] },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": { "filters": [] }
+}
